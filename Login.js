@@ -3,25 +3,23 @@
 import React from 'react';
 import {AppRegistry, StyleSheet, Text, View, Image, TextInput, TouchableHighlight} from 'react-native';
 
-var Login = React.createClass({
-  render: function(){
+export default class extends React.Component {
+  render() {
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require('image!Octocat')} />
         <Text style={styles.heading}>Github Browser</Text>
         <TextInput style={styles.input} placeholder="Github username" />
         <TextInput style={styles.input} placeholder="Github password" secureTextEntry="true" />
-
         <TouchableHighlight style={styles.button}>
-          <Text style={styles.buttonText}>Log in
-          </Text>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableHighlight>
       </View>
     )
   }
-})
+}
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F5FCFF',
     flex: 1,
@@ -58,5 +56,3 @@ var styles = StyleSheet.create({
     alignSelf: 'center'
   }
 });
-
-module.exports = Login;
