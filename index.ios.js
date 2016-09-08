@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
   ActivityIndicator
-} from 'react-native'
-import Login from './Login'
-import AuthService from './AuthService'
+} from 'react-native';
+import Login from './Login';
+import AuthService from './AuthService';
+import AppContainer from './AppContainer';
 
 class githubBrowser extends Component {
   constructor(props) {
@@ -39,9 +40,7 @@ class githubBrowser extends Component {
 
     if(this.state.isLoggedIn){
       return (
-        <View style={styles.container}>
-          <Text>Logged In</Text>
-        </View>
+        <AppContainer />
       )
     }
     else{
@@ -53,12 +52,6 @@ class githubBrowser extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
   welcome: {
     fontSize: 20,
     textAlign: 'center',
