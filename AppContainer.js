@@ -4,7 +4,9 @@ import React from 'react';
 import Buffer from 'buffer';
 import {Text, View, Component, StyleSheet,
   TabBarIOS
- } from 'react-native';
+} from 'react-native';
+
+import Feed from './Feed';
 
 export default class extends React.Component {
   constructor(props) {
@@ -22,7 +24,7 @@ export default class extends React.Component {
           icon={require('image!inbox')}
           onPress={()=> this.setState({selectedTab: 'feed'})}
         >
-          <Text style={styles.welcome}>Tab 1</Text>
+          <Feed />
         </TabBarIOS.Item>
         <TabBarIOS.Item
           title="Search"
