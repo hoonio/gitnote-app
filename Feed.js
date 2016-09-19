@@ -1,8 +1,12 @@
 'use strict';
 
 import React from 'react';
-import {Text, View, Component,
-  ListView
+import {Text,
+  View,
+  Component,
+  Image,
+  ListView,
+  ActivityIndicator
  } from 'react-native';
 
 export default class extends React.Component {
@@ -12,10 +16,21 @@ export default class extends React.Component {
       rowHasChanged: (r1, r2) => r1 != r2
     })
     this.state = {
-      dataSource: ds.cloneWithRows(['a','b','c'])
+      dataSource: ds.cloneWithRows([{
+        "actor": {
+          "avatar_url": "https://avatars.githubusercontent.com/u/810438?",
+          "login": "gaearon"
+        },
+        "created_at":
+"2016-09-19T13:24:23Z",
+        "payload": {
+          "action": "started"
+        }
+      }]),
+      showProgress: true
     }
   }
-  componentDidMount(){
+  componentWillMount(){
     this.fetchFeed();
   }
   fetchFeed(){
@@ -31,22 +46,49 @@ export default class extends React.Component {
       .then((responseData)=> {
         var feedItems = responseData.filter((ev)=> ev.type == 'WatchEvent');
         this.setState({
-          dataSource: this.state.dataSource.cloneWithRows(feedItems)
+          dataSource: this.state.dataSource.cloneWithRows(feedItems),
+          showProgress: false
         });
       })
     });
   }
   renderRow(rowData){
-    return <Text style={{
-        color:'#333',
-        backgroundColor:'#FFF',
-        alignSelf:'center'
-      }}
-      key={rowData.id}>
-      {rowData}
-    </Text>
+    return (
+      <View style={{
+          flex: 1,
+          flexDirection: 'row',
+          padding: 20,
+          alignItems: 'center',
+          borderColor: '#D7D7D7',
+          borderBottomWidth: 1
+        }}>
+        <Image source={{uri: rowData.actor.avatar_url}}
+          style={{
+            height: 36,
+            width: 36,
+            borderRadius: 18
+          }}
+        />
+        <View style={{
+            paddingLeft: 20
+          }}>
+          <Text>{rowData.created_at}</Text>
+          <Text>{rowData.actor.login}</Text>
+        </View>
+      </View>
+    )
   }
   render() {
+    if(this.state.showProgress){
+      <View style={{
+        flex: 1,
+        justifyContent: 'center'
+      }}>
+        <ActivityIndicator
+          animating={true}
+          size="large" />
+      </View>
+    }
     return (
       <View style={{
         flex: 1,
