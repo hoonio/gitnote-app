@@ -8,7 +8,8 @@ import {Text,
   ListView,
   ActivityIndicator,
   TouchableHighlight
- } from 'react-native';
+} from 'react-native';
+import PushPayload from './PushPayload';
 
 export default class extends React.Component {
   constructor(props) {
@@ -54,7 +55,13 @@ export default class extends React.Component {
     });
   }
   pressRow(rowData){
-    console.log(rowData)
+    this.props.navigator.push({
+      title: 'Push Event',
+      component: PushPayload,
+      passProps: {
+        pushEvent: rowData
+      }
+    });
   }
   renderRow(rowData){
     return (
