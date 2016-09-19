@@ -26,7 +26,20 @@ export default class extends React.Component {
         justifyContent: 'flex-start',
         alignItems: 'center'
       }}>
-        <Text>Hello</Text>
+        <Image source={{uri: this.props.pushEvent.actor.avatar_url}}
+          style={{
+            height: 120,
+            width: 120,
+            borderRadius: 60
+          }} />
+        <Text style={{
+            paddingTop: 20,
+            paddingBottom: 20,
+            fontSize: 20
+          }}>
+          {this.props.pushEvent.created_at}
+        </Text>
+        <Text>{this.props.pushEvent.actor.login}</Text>
       </View>
     );
   }
