@@ -6,7 +6,8 @@ import {Text,
   Component,
   Image,
   ListView,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableHighlight
  } from 'react-native';
 
 export default class extends React.Component {
@@ -52,30 +53,38 @@ export default class extends React.Component {
       })
     });
   }
+  pressRow(rowData){
+    console.log(rowData)
+  }
   renderRow(rowData){
     return (
-      <View style={{
-          flex: 1,
-          flexDirection: 'row',
-          padding: 20,
-          alignItems: 'center',
-          borderColor: '#D7D7D7',
-          borderBottomWidth: 1
-        }}>
-        <Image source={{uri: rowData.actor.avatar_url}}
-          style={{
-            height: 36,
-            width: 36,
-            borderRadius: 18
-          }}
-        />
+      <TouchableHighlight
+        onPress={()=> this.pressRow(rowData)}
+        underlayColor='#ddd'
+      >
         <View style={{
-            paddingLeft: 20
+            flex: 1,
+            flexDirection: 'row',
+            padding: 20,
+            alignItems: 'center',
+            borderColor: '#D7D7D7',
+            borderBottomWidth: 1
           }}>
-          <Text>{rowData.created_at}</Text>
-          <Text>{rowData.actor.login}</Text>
+          <Image source={{uri: rowData.actor.avatar_url}}
+            style={{
+              height: 36,
+              width: 36,
+              borderRadius: 18
+            }}
+          />
+          <View style={{
+              paddingLeft: 20
+            }}>
+            <Text>{rowData.created_at}</Text>
+            <Text>{rowData.actor.login}</Text>
+          </View>
         </View>
-      </View>
+      </TouchableHighlight>
     )
   }
   render() {
