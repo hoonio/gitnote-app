@@ -7,12 +7,13 @@ import {Text, View, Component, StyleSheet,
 } from 'react-native';
 
 import Feed from './Feed';
+import Search from './Search';
 
 export default class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTab: 'feed'
+      selectedTab: 'search'
     }
   }
   render() {
@@ -28,7 +29,7 @@ export default class extends React.Component {
               flex:1
             }}
             initialRoute={{
-              component:Feed,
+              component: Feed,
               title: 'Feed'
             }}
           />
@@ -39,7 +40,14 @@ export default class extends React.Component {
           icon={require('image!search')}
           onPress={()=> this.setState({selectedTab: 'search'})}
         >
-          <Text style={styles.welcome}>Tab 2</Text>
+          <NavigatorIOS style={{
+              flex:1
+            }}
+            initialRoute={{
+              component: Search,
+              title: 'Search'
+            }}
+          />
         </TabBarIOS.Item>
       </TabBarIOS>
     );
