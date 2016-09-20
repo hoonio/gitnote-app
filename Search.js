@@ -3,6 +3,8 @@
 import React from 'react';
 import {Text, View, Image, TextInput, TouchableHighlight, StyleSheet} from 'react-native';
 
+import SearchResults from './SearchResults';
+
 export default class extends React.Component {
   constructor(props) {
     super(props);
@@ -27,7 +29,14 @@ export default class extends React.Component {
     );
   }
   onSearchPressed() {
-    console.log('Search for ' + this.state.searchQuery)
+    console.log('Search for ' + this.state.searchQuery);
+    this.props.navigator.push({
+      component: SearchResults,
+      title: 'Results',
+      passProps: {
+        searchQuery: this.state.searchQuery
+      }
+    });
   }
 }
 
